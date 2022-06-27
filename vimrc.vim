@@ -48,6 +48,7 @@ map <leader>z <c-z>
 map <leader>c "+y
 map <leader>q :q<CR>
 map <leader>w :w<CR>
+nnoremap <Tab> %
 
 "Keybindings for tab navigation with leader and number
 noremap <leader>1 1gt
