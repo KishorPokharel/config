@@ -63,7 +63,10 @@ noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
 nnoremap <leader>x :tabclose<Cr>
 
+"fzf
 noremap <C-p> :Files<cr>
+noremap <leader>f :BLines<cr>
+noremap <leader>b :Lines<cr>
 
 "splits navigation
 nnoremap <C-h> <C-w>h
@@ -74,3 +77,9 @@ nnoremap <C-l> <C-w>l
 let g:go_doc_popup_window = 1
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
+
+" window resizing
+nnoremap <leader><Up>    :resize -2<CR>
+nnoremap <leader><Down>  :resize +2<CR>
+nnoremap <leader><Left>  :vertical resize -2<CR>
+nnoremap <leader><Right> :vertical resize +2<CR>
