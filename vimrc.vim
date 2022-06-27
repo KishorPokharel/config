@@ -67,6 +67,7 @@ nnoremap <leader>x :tabclose<Cr>
 noremap <C-p> :Files<cr>
 noremap <leader>f :BLines<cr>
 noremap <leader>b :Lines<cr>
+noremap <leader>r :Rg<cr>
 
 "splits navigation
 nnoremap <C-h> <C-w>h
