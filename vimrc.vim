@@ -42,33 +42,33 @@ highlight LineNr guifg=DarkGrey
 highlight Comment guifg=DarkGrey
 "end for gui vim
 
-map <C-n> :NERDTree<CR>
-map <leader>t :NERDTreeToggle<CR>
-map <leader>z <c-z>
-map <leader>c "+y
-map <leader>q :q<CR>
-map <leader>w :w<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>z <c-z>
+nnoremap <leader>c "+y
+nnoremap <leader>q :q<CR>
+nnoremap <leader>w :w<CR>
 nnoremap <Tab> %
 
 "Keybindings for tab navigation with leader and number
-noremap <leader>1 1gt
-noremap <leader>2 2gt
-noremap <leader>3 3gt
-noremap <leader>4 4gt
-noremap <leader>5 5gt
-noremap <leader>6 6gt
-noremap <leader>7 7gt
-noremap <leader>8 8gt
-noremap <leader>9 9gt
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
 
-noremap <leader>0 :tablast<cr>
+nnoremap <leader>0 :tablast<cr>
 nnoremap <leader>x :tabclose<Cr>
 
 "fzf
-noremap <C-p> :Files<cr>
-noremap <leader>f :BLines<cr>
-noremap <leader>b :Lines<cr>
-noremap <leader>r :Rg<cr>
+nnoremap <C-p> :Files<cr>
+nnoremap <leader>f :BLines<cr>
+nnoremap <leader>b :Lines<cr>
+nnoremap <leader>r :Rg<cr>
 
 "splits navigation
 nnoremap <C-h> <C-w>h
@@ -85,3 +85,6 @@ nnoremap <leader><Up>    :resize -2<CR>
 nnoremap <leader><Down>  :resize +2<CR>
 nnoremap <leader><Left>  :vertical resize -2<CR>
 nnoremap <leader><Right> :vertical resize +2<CR>
+
+"title case
+vnoremap tc :s/\<\(\w\)\(\w*\)\>/\u\1\L\2/g<CR>
