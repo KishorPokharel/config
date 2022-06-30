@@ -43,13 +43,16 @@ highlight LineNr guifg=DarkGrey
 highlight Comment guifg=DarkGrey
 "end for gui vim
 
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <leader>t :term<CR>
 nnoremap <leader>z <c-z>
 nnoremap <leader>c "+y
 nnoremap <leader>q :q<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <Tab> %
+
+"ominfunc autocomplete
+inoremap <C-\> <C-x><C-o>
 
 "Keybindings for tab navigation with leader and number
 nnoremap <leader>1 1gt
