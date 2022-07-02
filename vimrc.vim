@@ -7,7 +7,8 @@ set shiftwidth=4 "when indenting with '>', use 4 spaces width
 set numberwidth=4 "change width of 'gutter' column used for numbering
 set expandtab "on pressing tab, insert 4 spaces
 set cursorline "highlight current line
-set ttimeoutlen=100
+set laststatus=2
+set ttimeoutlen=100 "fixes Shift-o lag :\
 
 " search down into subfolders
 set path+=**
@@ -49,8 +50,11 @@ nnoremap <leader>z <c-z>
 nnoremap <leader>c "+y
 nnoremap <leader>q :q<CR>
 nnoremap <leader>w :w<CR>
+nnoremap <leader>vs :vnew<CR>
+nnoremap <leader>sp :new<CR>
 nnoremap <Tab> %
 
+inoremap <C-k> <Esc>
 "ominfunc autocomplete
 inoremap <C-\> <C-x><C-o>
 
@@ -92,3 +96,6 @@ nnoremap <leader><Right> :vertical resize +2<CR>
 
 "title case
 vnoremap tc :s/\<\(\w\)\(\w*\)\>/\u\1\L\2/g<CR>
+
+"snippets
+ia hfsig w http.ResponseWriter, r *http.Request
