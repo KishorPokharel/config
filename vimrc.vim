@@ -9,6 +9,9 @@ set expandtab "on pressing tab, insert 4 spaces
 set cursorline "highlight current line
 set backspace=indent,eol,start
 set laststatus=2
+set wrap
+set shiftround
+set linebreak "prevent word from being split while wrapping
 set ttimeoutlen=100 "fixes Shift-o lag :\
 
 " search down into subfolders
@@ -54,8 +57,12 @@ nnoremap <leader>w :w<CR>
 nnoremap <leader>vs :vnew<CR>
 nnoremap <leader>sp :new<CR>
 nnoremap <Tab> %
+nnoremap <leader><leader>s :source ~/.vimrc<CR>
 
 inoremap <C-k> <Esc>
+"emmet
+imap <C-i> <C-y>,
+
 "ominfunc autocomplete
 inoremap <C-\> <C-x><C-o>
 
@@ -69,7 +76,6 @@ nnoremap <leader>6 6gt
 nnoremap <leader>7 7gt
 nnoremap <leader>8 8gt
 nnoremap <leader>9 9gt
-
 nnoremap <leader>0 :tablast<cr>
 nnoremap <leader>x :tabclose<Cr>
 
