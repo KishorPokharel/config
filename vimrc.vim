@@ -7,6 +7,7 @@ set shiftwidth=4 "when indenting with '>', use 4 spaces width
 set numberwidth=4 "change width of 'gutter' column used for numbering
 set expandtab "on pressing tab, insert 4 spaces
 set cursorline "highlight current line
+set backspace=indent,eol,start
 set laststatus=2
 set ttimeoutlen=100 "fixes Shift-o lag :\
 
@@ -85,8 +86,6 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 let g:go_doc_popup_window = 1
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
 
 " window resizing
 nnoremap <leader><Up>    :resize -2<CR>
