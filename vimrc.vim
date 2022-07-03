@@ -53,6 +53,7 @@ nnoremap <leader>t :term<CR>
 nnoremap <leader>z <c-z>
 nnoremap <leader>c "+y
 nnoremap <leader>q :q<CR>
+nnoremap <leader><leader>q :q!<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>vs :vnew<CR>
 nnoremap <leader>sp :new<CR>
