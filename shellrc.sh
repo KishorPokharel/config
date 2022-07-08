@@ -8,3 +8,4 @@ yt2mp3() {
 }
 
 alias lspath='echo $PATH | tr ":" "\n"'
+alias q='exit'

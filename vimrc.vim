@@ -1,6 +1,8 @@
 set enc=utf-8
 set nocompatible
 set number
+set mouse=a
+set ignorecase
 filetype plugin indent on
 set tabstop=4 "show existing tab with 4 spaces width
 set shiftwidth=4 "when indenting with '>', use 4 spaces width
@@ -48,6 +50,9 @@ highlight LineNr guifg=DarkGrey
 highlight Comment guifg=DarkGrey
 "end for gui vim
 
+let g:NERDTreeMinimalUI = 1
+"let g:NERDTreeMinimalMenu = 1
+
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <leader>t :term<CR>
 nnoremap <leader>z <c-z>
@@ -62,7 +67,7 @@ nnoremap <leader><leader>s :source ~/.vimrc<CR>
 
 inoremap <C-k> <Esc>
 "emmet
-imap <C-i> <C-y>,
+imap <C-p> <C-y>,
 
 "ominfunc autocomplete
 inoremap <C-\> <C-x><C-o>
@@ -80,7 +85,7 @@ nnoremap <leader>9 9gt
 nnoremap <leader>0 :tablast<cr>
 nnoremap <leader>x :tabclose<Cr>
 
-"fzf
+"fzf.vim
 nnoremap <C-p> :Files<cr>
 nnoremap <leader>f :BLines<cr>
 nnoremap <leader>b :Lines<cr>
@@ -103,5 +108,8 @@ nnoremap <leader><Right> :vertical resize +2<CR>
 "title case
 vnoremap tc :s/\<\(\w\)\(\w*\)\>/\u\1\L\2/g<CR>
 
+"autocmd Filetype python set cursorcolumn
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+
 "snippets
-ia hfsig w http.ResponseWriter, r *http.Request
+autocmd Filetype go ia hfsig w http.ResponseWriter, r *http.Request
