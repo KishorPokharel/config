@@ -12,6 +12,7 @@ set clipboard^=unnamed,unnamedplus
 set cursorline "highlight current line
 set backspace=indent,eol,start
 set laststatus=2
+set noruler
 set wrap
 set shiftround
 set linebreak "prevent word from being split while wrapping
@@ -21,6 +22,7 @@ set ttimeoutlen=100 "fixes Shift-o lag :\
 set path+=**
 set wildignore+=**/node_modules/*
 set wildignore+=**/.git/*
+set wildignore+=*.swp
 
 "display all matching files when we tab complete
 set wildmenu
@@ -37,6 +39,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf.vim'
     Plug 'markonm/traces.vim'
     Plug 'mattn/emmet-vim'
+    Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production', 'branch': 'release/0.x' }
+    Plug 'voldikss/vim-floaterm'
 call plug#end()
 
 colorscheme ghdarkcustom
@@ -55,7 +59,8 @@ let g:NERDTreeMinimalUI = 1
 "let g:NERDTreeMinimalMenu = 1
 
 nnoremap <C-n> :NERDTreeToggle<CR>
-nnoremap <leader>t :term<CR>
+"nnoremap <leader>t :term<CR>
+nnoremap <leader>t :FloatermNew --height=0.8 --width=0.9<CR>
 nnoremap <leader>z <c-z>
 vnoremap <leader>c "+y
 nnoremap <leader>q :q<CR>
@@ -99,6 +104,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 let g:go_doc_popup_window = 1
+let g:floaterm_title = ""
 
 " window resizing
 nnoremap <leader><Up>    :resize -2<CR>
