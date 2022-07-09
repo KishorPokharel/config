@@ -8,6 +8,7 @@ set tabstop=4 "show existing tab with 4 spaces width
 set shiftwidth=4 "when indenting with '>', use 4 spaces width
 set numberwidth=4 "change width of 'gutter' column used for numbering
 set expandtab "on pressing tab, insert 4 spaces
+set clipboard^=unnamed,unnamedplus
 set cursorline "highlight current line
 set backspace=indent,eol,start
 set laststatus=2
@@ -56,7 +57,7 @@ let g:NERDTreeMinimalUI = 1
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <leader>t :term<CR>
 nnoremap <leader>z <c-z>
-nnoremap <leader>c "+y
+vnoremap <leader>c "+y
 nnoremap <leader>q :q<CR>
 nnoremap <leader><leader>q :q!<CR>
 nnoremap <leader>w :w<CR>
