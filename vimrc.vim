@@ -17,6 +17,7 @@ set wrap
 set shiftround
 set linebreak "prevent word from being split while wrapping
 set ttimeoutlen=100 "fixes Shift-o lag :\
+set wildoptions+=fuzzy
 
 " search down into subfolders
 set path+=**
@@ -114,9 +115,10 @@ nnoremap <leader><Right> :vertical resize +2<CR>
 
 "title case
 vnoremap tc :s/\<\(\w\)\(\w*\)\>/\u\1\L\2/g<CR>
-
 "autocmd Filetype python set cursorcolumn
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-
 "snippets
-autocmd Filetype go ia hfsig w http.ResponseWriter, r *http.Request
+autocmd Filetype go ia <buffer> hfsig w http.ResponseWriter, r *http.Request
+
+autocmd Filetype javascript,html,css set sw=2 sts=2
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html PrettierAsync
