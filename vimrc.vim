@@ -28,6 +28,12 @@ set wildignore+=*.swp
 "display all matching files when we tab complete
 set wildmenu
 
+vnoremap > >gv
+vnoremap < <gv
+" j/k will move virtual lines (lines that wrap)
+noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+
 let mapleader = " "
 set linespace=9 "for gui vim
 set lazyredraw
@@ -122,3 +128,4 @@ autocmd Filetype go ia <buffer> hfsig w http.ResponseWriter, r *http.Request
 
 autocmd Filetype javascript,html,css set sw=2 sts=2
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html PrettierAsync
+autocmd Filetype c,cpp nnoremap <leader>p ggVG:!clang-format % --style=google<CR>:w<CR>
