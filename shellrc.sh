@@ -9,3 +9,6 @@ yt2mp3() {
 
 alias lspath='echo $PATH | tr ":" "\n"'
 alias q='exit'
+alias vimrc="vi ~/.vimrc"
+alias zshrc="vi ~/.zshrc"
+alias cat=bat
