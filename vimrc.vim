@@ -71,12 +71,15 @@ nnoremap <leader>t :FloatermNew --height=0.8 --width=0.9<CR>
 nnoremap <leader>z <c-z>
 vnoremap <leader>c "+y
 nnoremap <leader>q :q<CR>
-nnoremap <leader><leader>q :q!<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>vs :vnew<CR>
 nnoremap <leader>sp :new<CR>
 nnoremap <Tab> %
+
+nnoremap <leader><leader>q :q!<CR>
 nnoremap <leader><leader>s :source ~/.vimrc<CR>
+nnoremap <leader><leader>v :tabe ~/.vimrc<CR>
+nnoremap <leader><leader>z :tabe ~/.zshrc<CR>
 
 inoremap <C-k> <Esc>
 "emmet
@@ -111,6 +114,17 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 let g:go_doc_popup_window = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_format_strings = 1
+"let g:go_highlight_structs = 1
+"let g:go_highlight_methods = 1
+"let g:go_highlight_functions = 1
+"let g:go_highlight_operators = 1
+"let g:go_highlight_build_constraints = 1
+"let g:go_highlight_function_parameters = 1
+"let g:go_highlight_types = 1
+"let g:go_highlight_fields = 1
+
 let g:floaterm_title = ""
 
 " window resizing
