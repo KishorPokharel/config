@@ -47,7 +47,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'markonm/traces.vim'
     Plug 'mattn/emmet-vim'
     Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production', 'branch': 'release/0.x' }
-    Plug 'voldikss/vim-floaterm'
+    Plug 'godlygeek/tabular'
 call plug#end()
 
 colorscheme ghdarkcustom
@@ -66,8 +66,7 @@ let g:NERDTreeMinimalUI = 1
 "let g:NERDTreeMinimalMenu = 1
 
 nnoremap <C-n> :NERDTreeToggle<CR>
-"nnoremap <leader>t :term<CR>
-nnoremap <leader>t :FloatermNew --height=0.8 --width=0.9<CR>
+nnoremap <leader>t :term<CR>
 nnoremap <leader>z <c-z>
 vnoremap <leader>c "+y
 nnoremap <leader>q :q<CR>
@@ -81,7 +80,6 @@ nnoremap <leader><leader>s :source ~/.vimrc<CR>
 nnoremap <leader><leader>v :tabe ~/.vimrc<CR>
 nnoremap <leader><leader>z :tabe ~/.zshrc<CR>
 
-inoremap <C-k> <Esc>
 "emmet
 imap <C-p> <C-y>,
 
@@ -143,3 +141,8 @@ autocmd Filetype go ia <buffer> hfsig w http.ResponseWriter, r *http.Request
 autocmd Filetype javascript,html,css set sw=2 sts=2
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html PrettierAsync
 autocmd Filetype c,cpp nnoremap <leader>p ggVG:!clang-format % --style=google<CR>:w<CR>
+
+tnoremap <C-h> <C-w>h
+tnoremap <C-j> <C-w>j
+tnoremap <C-k> <C-w>k
+tnoremap <C-l> <C-w>l
