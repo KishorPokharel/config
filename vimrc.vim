@@ -3,13 +3,14 @@ set nocompatible
 set number
 set mouse=a
 set ignorecase
+set smartcase
 filetype plugin indent on
 set tabstop=4 "show existing tab with 4 spaces width
 set shiftwidth=4 "when indenting with '>', use 4 spaces width
 set numberwidth=4 "change width of 'gutter' column used for numbering
 set expandtab "on pressing tab, insert 4 spaces
-set clipboard^=unnamed,unnamedplus
-set cursorline "highlight current line
+"set clipboard^=unnamed,unnamedplus
+"set cursorline "highlight current line
 set backspace=indent,eol,start
 set laststatus=2
 set noruler
