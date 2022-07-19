@@ -123,8 +123,6 @@ let g:go_highlight_format_strings = 1
 "let g:go_highlight_types = 1
 "let g:go_highlight_fields = 1
 
-let g:floaterm_title = ""
-
 " window resizing
 nnoremap <leader><Up>    :resize -2<CR>
 nnoremap <leader><Down>  :resize +2<CR>
@@ -146,3 +144,4 @@ tnoremap <C-h> <C-w>h
 tnoremap <C-j> <C-w>j
 tnoremap <C-k> <C-w>k
 tnoremap <C-l> <C-w>l
+tnoremap <C-b> <C-\><C-n>
