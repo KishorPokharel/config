@@ -18,7 +18,10 @@ set wrap
 set shiftround
 set linebreak "prevent word from being split while wrapping
 set ttimeoutlen=100 "fixes Shift-o lag :\
-set wildoptions+=fuzzy
+if v:version >= 900
+    set wildoptions+=fuzzy
+    "set wildoptions+=pum
+endif
 
 " search down into subfolders
 set path+=**
@@ -64,6 +67,7 @@ highlight Comment guifg=DarkGrey
 "end for gui vim
 
 let g:NERDTreeMinimalUI = 1
+let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__', 'node_modules']
 "let g:NERDTreeMinimalMenu = 1
 
 nnoremap <C-n> :NERDTreeToggle<CR>
@@ -105,6 +109,14 @@ nnoremap <C-p> :Files<cr>
 nnoremap <leader>f :BLines<cr>
 nnoremap <leader>b :Lines<cr>
 nnoremap <leader>r :Rg<cr>
+nnoremap <leader>h :History<cr>
+nnoremap <leader>sh :History/<cr>
+nnoremap <leader>ch :History:<cr>
+nnoremap <leader><Tab> :Buffers<cr>
+inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
+" Replace the default dictionary completion with fzf-based fuzzy completion
+inoremap <expr> <c-x><c-k> fzf#vim#complete('cat /usr/share/dict/words')
+imap <c-x><c-l> <plug>(fzf-complete-line)
 
 "splits navigation
 nnoremap <C-h> <C-w>h
