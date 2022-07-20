@@ -44,6 +44,7 @@ set lazyredraw
 
 call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-commentary'
+    Plug 'tpope/vim-surround'
     Plug 'scrooloose/nerdtree'
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -72,6 +73,7 @@ let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycach
 
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <leader>t :term<CR>
+nnoremap <leader>dt :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
 nnoremap <leader>z <c-z>
 vnoremap <leader>c "+y
 nnoremap <leader>q :q<CR>
