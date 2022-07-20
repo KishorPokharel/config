@@ -11,6 +11,7 @@ set numberwidth=4 "change width of 'gutter' column used for numbering
 set expandtab "on pressing tab, insert 4 spaces
 "set clipboard^=unnamed,unnamedplus
 "set cursorline "highlight current line
+set viminfo='200,<50,s10,h
 set backspace=indent,eol,start
 set laststatus=2
 set noruler
@@ -72,6 +73,7 @@ let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycach
 "let g:NERDTreeMinimalMenu = 1
 
 nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTree %:h<CR>
 nnoremap <leader>t :term<CR>
 nnoremap <leader>dt :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
 nnoremap <leader>z <c-z>
