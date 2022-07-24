@@ -122,6 +122,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production', 'branch': 'release/0.x' }
     Plug 'godlygeek/tabular'
     Plug 'hrsh7th/vim-vsnip'
+    Plug 'dense-analysis/ale'
 call plug#end()
 
 "nerdtree settings
@@ -148,6 +149,7 @@ let g:go_doc_popup_window = 1
 let g:go_highlight_function_calls = 1
 let g:go_highlight_format_strings = 1
 let g:go_highlight_function_parameters = 1
+let g:go_diagnostics_level = 2
 
 "vsnip settings
 imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
@@ -162,6 +164,9 @@ nmap        s   <Plug>(vsnip-select-text)
 xmap        s   <Plug>(vsnip-select-text)
 nmap        S   <Plug>(vsnip-cut-text)
 xmap        S   <Plug>(vsnip-cut-text)
+let g:vsnip_filetypes = {}
+let g:vsnip_filetypes.javascriptreact = ['javascript']
+let g:vsnip_filetypes.typescriptreact = ['typescript']
 
 "autocmd Filetype python set cursorcolumn
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
@@ -173,3 +178,7 @@ augroup PrettierCmd
   au!
   autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html PrettierAsync
 augroup END
+
+let g:ale_linters = {
+  \ 'go': ['gopls'],
+  \}
