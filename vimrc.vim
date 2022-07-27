@@ -11,6 +11,7 @@ set tabstop=4 "show existing tab with 4 spaces width
 set shiftwidth=4 "when indenting with '>', use 4 spaces width
 set numberwidth=5 "set linenumber gutter size
 set expandtab "On pressing tab, insert 4 spaces
+set splitbelow splitright
 "set clipboard^=unnamed,unnamedplus
 "set cursorline "highlight current line
 set viminfo='200,<50,s10,h
@@ -109,6 +110,7 @@ tnoremap <C-k> <C-w>k
 tnoremap <C-l> <C-w>l
 tnoremap <C-b> <C-\><C-n>
 
+" plugins
 call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-fugitive'
@@ -123,6 +125,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'godlygeek/tabular'
     Plug 'hrsh7th/vim-vsnip'
     Plug 'dense-analysis/ale'
+    Plug 'itchyny/lightline.vim'
 call plug#end()
 
 "nerdtree settings
@@ -179,6 +182,18 @@ augroup PrettierCmd
   autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html PrettierAsync
 augroup END
 
+" lightline setting
+ let g:lightline = {
+       \ 'colorscheme': 'wombat',
+       \ 'active': {
+       \   'right': [],
+       \ },
+       \ 'inactive': {
+       \   'right': [],
+       \ },
+       \ }
+
 let g:ale_linters = {
   \ 'go': ['gopls'],
   \}
+let g:ale_set_quickfix=1
