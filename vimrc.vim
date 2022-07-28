@@ -199,5 +199,12 @@ let g:ale_linters = {
 let g:ale_set_quickfix=1
 
 " search everything
-command! -bang AllFiles call fzf#run(fzf#wrap({'source': 'fd --type file --exclude node_modules --exclude venv . --search-path ~/workspace/, 'sink': 'edit', 'options': '--preview=bat\ --style=numbers\ --color=always\ {}'}, <bang>0))
+function s:open_file(path)
+    let cmd = get({'ctrl-x': 'split',
+               \ 'ctrl-v': 'vertical split',
+               \ 'ctrl-t': 'tabe'}, a:path[0], 'e')
+    execute cmd escape(a:path[1], ' %#\')
+endfunction
+
+command! -bang AllFiles call fzf#run(fzf#wrap({'source': 'fd --type file --exclude node_modules --exclude venv . --search-path ~/workspace/', 'sink*': function('<sid>open_file'), 'options': '--expect=ctrl-t,ctrl-v,ctrl-x '.'--preview=bat\ --style=numbers\ --color=always\ {}'}, <bang>0))
 nnoremap <leader><leader>f :AllFiles<CR>
