@@ -197,3 +197,7 @@ let g:ale_linters = {
   \ 'go': ['gopls'],
   \}
 let g:ale_set_quickfix=1
+
+" search everything
+command! -bang AllFiles call fzf#run(fzf#wrap({'source': 'fd --type file --exclude node_modules --exclude venv . --search-path ~/workspace/, 'sink': 'edit', 'options': '--preview=bat\ --style=numbers\ --color=always\ {}'}, <bang>0))
+nnoremap <leader><leader>f :AllFiles<CR>
