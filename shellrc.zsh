@@ -6,6 +6,18 @@ mktouch() {
 sd() {
     cd ${"$(fd --type d --exclude node_modules | fzf)":-"."}
 }
+movies() {
+    m="$(fd --type file '.*.(mp4|mkv)' ~/Downloads/movies/ | fzf)"
+    if [[ $m != "" ]]; then
+        open $m
+    fi
+}
+pdfs() {
+    p="$(fd --type file '.*.pdf' ~/Downloads/ | fzf)"
+    if [[ $p != "" ]]; then
+        open $p
+    fi
+}
 yt2mp3() {
     youtube-dl -x --audio-format mp3 $1 --no-check-certificate
 }
