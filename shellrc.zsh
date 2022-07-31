@@ -1,8 +1,15 @@
 mkcd() { mkdir -p "$@" && cd "$@"; }
 
 mktouch() {
-    mkdir -p "$(dirname "$1")"
-    touch "$1"
+	if [ $# -lt 1 ]; then
+		echo "Missing argument";
+		return 1;
+	fi
+
+	for f in "$@"; do
+		mkdir -p -- "$(dirname -- "$f")"
+		touch -- "$f"
+	done
 }
 
 sd() {
