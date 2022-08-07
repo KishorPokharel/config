@@ -38,7 +38,7 @@ fv() {
 }
 
 yt2mp3() {
-    youtube-dl -x --audio-format mp3 $1 --no-check-certificate
+    yt-dlp -x --audio-format mp3 $1
 }
 
 alias lspath='echo $PATH | tr ":" "\n"'
