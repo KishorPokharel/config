@@ -24,9 +24,11 @@ movies() {
 }
 
 pdfs() {
-    p="$(fd --type file '.*.pdf' ~/Downloads/ | fzf)"
+    p="$(fd --type file '.*.pdf' ~/Downloads/ | fzf -m --layout=reverse)"
     if [[ $p != "" ]]; then
-        open $p
+        while IFS= read -r pdf; do
+            open "$pdf"
+        done <<< "$p"
     fi
 }
 
