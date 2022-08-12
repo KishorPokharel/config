@@ -1,3 +1,6 @@
+export PROMPT='%B%{$fg[cyan]%}%c%{$reset_color%}%b $(git_prompt_info)$ '
+export EXA_COLORS='di=36;;01'
+
 mkcd() { mkdir -p "$@" && cd "$@"; }
 
 mktouch() {
@@ -48,3 +51,5 @@ alias q='exit'
 alias vimrc="vi ~/.vimrc"
 alias zshrc="vi ~/.zshrc"
 alias cat=bat
+alias ls="exa"
+alias tree="exa --tree"
