@@ -43,6 +43,7 @@ colorscheme ghdarkcustom
 highlight Normal ctermbg=None
 highlight LineNr ctermfg=DarkGrey
 highlight Comment ctermfg=DarkGrey
+highlight Visual ctermfg=White
 " for mvim
 highlight LineNr guifg=DarkGrey
 highlight Comment guifg=DarkGrey
