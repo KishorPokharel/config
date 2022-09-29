@@ -98,6 +98,12 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+"move window
+nnoremap mh <C-w>H
+nnoremap mj <C-w>J
+nnoremap mk <C-w>K
+nnoremap ml <C-w>L
+
 "window resizing
 nnoremap <leader><Up>    :resize -2<CR>
 nnoremap <leader><Down>  :resize +2<CR>
@@ -201,6 +207,9 @@ let g:ale_set_quickfix=1
 
 " search everything
 function s:open_file(path)
+    if len(a:path) == 0
+        return
+    endif
     let cmd = get({'ctrl-x': 'split',
                \ 'ctrl-v': 'vertical split',
                \ 'ctrl-t': 'tabe'}, a:path[0], 'e')
