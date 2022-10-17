@@ -46,6 +46,26 @@ yt2mp3() {
     yt-dlp -x --audio-format mp3 $1
 }
 
+ytd() {
+    if [[ "$1" = "" ]]; then
+        return
+    fi
+    url="$(yt-dlp "ytsearch10: $1" -J | jq -r '.entries[] | "\(.webpage_url)\t\(.title)\t\(.upload_date)"' | fzf | cut -f 1)"
+    if [[ -n "$url" ]]; then
+        yt2mp3 "$url"
+    fi
+}
+
+ytplay() {
+    if [[ "$1" = "" ]]; then
+        return
+    fi
+    url="$(yt-dlp "ytsearch10: $1" -J | jq -r '.entries[] | "\(.webpage_url)\t\(.title)\t\(.upload_date)"' | fzf | cut -f 1)"
+    if [[ -n "$url" ]]; then
+        mpv "$url"
+    fi
+}
+
 alias lspath='echo $PATH | tr ":" "\n"'
 alias q='exit'
 alias vimrc="vi ~/.vimrc"
