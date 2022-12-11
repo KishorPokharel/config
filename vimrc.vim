@@ -68,6 +68,8 @@ nnoremap <leader><leader>v :tabe ~/.vimrc<CR>
 nnoremap <leader><leader>z :tabe ~/.zshrc<CR>
 nnoremap <leader><leader>q :q!<CR>
 
+nnoremap H ^
+nnoremap L $
 nnoremap <Tab> %
 vnoremap > >gv
 vnoremap < <gv

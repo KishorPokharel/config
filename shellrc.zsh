@@ -73,3 +73,4 @@ alias zshrc="vi ~/.zshrc"
 alias cat=bat
 alias ls="exa"
 alias tree="exa --tree"
+alias serve="python3 -m http.server"
