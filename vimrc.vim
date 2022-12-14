@@ -205,7 +205,21 @@ augroup END
 let g:ale_linters = {
   \ 'go': ['gopls'],
   \}
+let g:ale_fixers = {
+\   'go': [
+\       'goimports',
+\       'gofmt',
+\   ],
+\}
+let g:ale_fix_on_save = 1
 let g:ale_set_quickfix=1
+let g:ale_floating_preview=1
+let g:ale_floating_window_border=['│', '─', '╭', '╮', '╯', '╰', '│', '─']
+
+nnoremap gn :ALENextWrap<CR>
+nnoremap gp :ALEPreviousWrap<CR>
+nnoremap K :ALEHover<CR>
+nnoremap gd :ALEGoToDefinition<CR>
 
 " search everything
 function s:open_file(path)
