@@ -136,6 +136,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'hrsh7th/vim-vsnip'
     Plug 'dense-analysis/ale'
     Plug 'itchyny/lightline.vim'
+    Plug 'shime/vim-livedown'
 call plug#end()
 
 "nerdtree settings
@@ -235,3 +236,12 @@ endfunction
 
 command! -bang AllFiles call fzf#run(fzf#wrap({'source': 'fd --type file --exclude node_modules --exclude venv . --search-path ~/workspace/', 'sink*': function('<sid>open_file'), 'options': '--expect=ctrl-t,ctrl-v,ctrl-x '.'--preview=bat\ --style=numbers\ --color=always\ {}'}, <bang>0))
 nnoremap <leader><leader>f :AllFiles<CR>
+
+set scrolloff=5
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+command! -nargs=* -complete=shellcmd R new | setlocal buftype=nofile bufhidden=hide noswapfile | r !<args>
+nnoremap <leader>es :R 
+
+nnoremap <leader>md :LivedownToggle<CR>
