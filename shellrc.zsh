@@ -66,6 +66,14 @@ ytplay() {
     fi
 }
 
+songs() {
+    m="$(fd --type file '.*.mp3' ~/songs/ | fzf --layout=reverse )"
+    if [[ -n "$m" ]]; then
+        cmus-remote -f "$m"
+        songs
+    fi
+}
+
 alias lspath='echo $PATH | tr ":" "\n"'
 alias q='exit'
 alias vimrc="vi ~/.vimrc"
