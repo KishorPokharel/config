@@ -8,19 +8,22 @@ mktouch() {
         echo "Missing argument";
         return 1;
     fi
-
     for f in "$@"; do
         mkdir -p -- "$(dirname -- "$f")"
         touch -- "$f"
     done
 }
 
-sd() {
-    cd ${"$(fd --type d --exclude node_modules | fzf)":-"."}
+jd() {
+    if [[ "$1" = "-u" ]]; then
+        cd ${"$(fd --type d --exclude node_modules --exclude __pycache__ --exclude venv . --search-path ~/workspace/ --search-path ~/Downloads | tee ~/.all_dirs | fzf --layout=reverse)":-"."}
+    else
+        cd ${"$(cat ~/.all_dirs | fzf --layout=reverse)":-"."}
+    fi
 }
 
 movies() {
-    m="$(fd --type file '.*.(mp4|mkv)' ~/Downloads/movies/ | fzf)"
+    m="$(fd --type file '.*.(mp4|mkv)' ~/Downloads/movies/ | fzf --layout=reverse)"
     if [[ $m != "" ]]; then
         open $m
     fi
@@ -36,10 +39,21 @@ pdfs() {
 }
 
 fv() {
-    f="$(fd --type file --exclude node_modules --exclude venv . --search-path ~/workspace/ | fzf --preview 'bat --style=numbers --color=always {}')"
-    if [[ $f != "" ]]; then
-        vi $f
+    if [[ "$1" = "-u" ]]; then
+        f="$(fd --type file --exclude node_modules --exclude __pycache__ --exclude venv . --search-path ~/workspace/ | tee ~/.all_files | fzf --layout=reverse )"
+        if [[ $f != "" ]]; then
+            vi $f
+        fi
+    else
+        f="$(cat ~/.all_files | fzf --layout=reverse )"
+        if [[ $f != "" ]]; then
+            vi $f
+        fi
     fi
+}
+
+copy() {
+    cat $1 | pbcopy
 }
 
 yt2mp3() {
@@ -74,11 +88,36 @@ songs() {
     fi
 }
 
+tss() {
+    SESSION=$(tmux list-sessions -F \#S | fzf --layout=reverse)
+    if [[ -n $SESSION ]]; then
+        tmux switch-client -t $SESSION || tmux attach -t $SESSION
+    fi
+}
+gistv() {
+    code=$(gh gist list | fzf --layout=reverse | awk '{print $1}')
+    if [[ -n "$code" ]]; then
+        gh gist view "$code"
+    fi
+}
+giste() {
+    code=$(gh gist list | fzf --layout=reverse | awk '{print $1}')
+    if [[ -n "$code" ]]; then
+        gh gist edit "$code"
+    fi
+}
+
+alias ts="tmux new -s "
+alias tac="tail -r"
 alias lspath='echo $PATH | tr ":" "\n"'
 alias q='exit'
+alias work="cd ~/workspace"
 alias vimrc="vi ~/.vimrc"
 alias zshrc="vi ~/.zshrc"
-alias cat=bat
+alias sz="source ~/.zshrc"
+alias cat="bat -p"
 alias ls="exa"
 alias tree="exa --tree"
 alias serve="python3 -m http.server"
+alias cr="cmus-remote"
+alias trim="awk '{\$1=\$1;print}'"
