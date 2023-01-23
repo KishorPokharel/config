@@ -59,6 +59,7 @@ nnoremap <leader>t :term<CR>
 nnoremap <leader>dt :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
 nnoremap <leader>z <c-z>
 vnoremap <leader>c "+y 
+nnoremap <leader>cp "+p
 nnoremap <leader>cd :cd %:h<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>w :w<CR>
