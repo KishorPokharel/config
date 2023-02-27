@@ -213,6 +213,9 @@ let g:ale_fixers = {
 \       'goimports',
 \       'gofmt',
 \   ],
+\   'elm': [
+\       'elm-format',
+\   ]
 \}
 let g:ale_fix_on_save = 1
 let g:ale_set_quickfix=1

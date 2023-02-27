@@ -1,5 +1,5 @@
 export PROMPT='%B%{$fg[cyan]%}%c%{$reset_color%}%b $(git_prompt_info)$ '
-export EXA_COLORS='di=36;;01'
+export EXA_COLORS='di=36;;01:*.mp3=37;;01:*.pdf=33'
 
 mkcd() { mkdir -p "$@" && cd "$@"; }
 
@@ -94,12 +94,14 @@ tss() {
         tmux switch-client -t $SESSION || tmux attach -t $SESSION
     fi
 }
+
 gistv() {
     code=$(gh gist list | fzf --layout=reverse | awk '{print $1}')
     if [[ -n "$code" ]]; then
         gh gist view "$code"
     fi
 }
+
 giste() {
     code=$(gh gist list | fzf --layout=reverse | awk '{print $1}')
     if [[ -n "$code" ]]; then
