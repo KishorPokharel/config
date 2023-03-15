@@ -1,6 +1,12 @@
 export PROMPT='%B%{$fg[cyan]%}%c%{$reset_color%}%b $(git_prompt_info)$ '
 export EXA_COLORS='di=36;;01:*.mp3=37;;01:*.pdf=33'
 
+# edit long commands in $EDITOR
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
+
 mkcd() { mkdir -p "$@" && cd "$@"; }
 
 mktouch() {
