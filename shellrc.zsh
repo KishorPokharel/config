@@ -28,6 +28,13 @@ jd() {
     fi
 }
 
+notes() {
+    n="$(fd --type file . ~/notes | fzf --layout=reverse --preview 'bat --style=numbers --color=always {}')"
+    if [[ $n != "" ]]; then
+        vi $n
+    fi
+}
+
 movies() {
     m="$(fd --type file '.*.(mp4|mkv)' ~/Downloads/movies/ | fzf --layout=reverse)"
     if [[ $m != "" ]]; then
@@ -86,12 +93,21 @@ ytplay() {
     fi
 }
 
+ytdlist() {
+    yt-dlp -x --audio-format mp3 --audio-quality 0 -a "$1"
+}
+
 songs() {
     m="$(fd --type file '.*.mp3' ~/songs/ | fzf --layout=reverse )"
     if [[ -n "$m" ]]; then
         cmus-remote -f "$m"
         songs
     fi
+}
+
+nepalidate() {
+  curl -s https://www.hamropatro.com/widgets/calender-small.php | pup 'select.month option[selected], ul.dates li.active span.nep text{}' | tr '\n' ' '
+  echo ""
 }
 
 tss() {
