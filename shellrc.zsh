@@ -131,6 +131,16 @@ giste() {
     fi
 }
 
+networkscan() {
+    port=$1
+    if [[ -n "$port" ]]; then
+        port=":$port"
+    fi
+    hostport=$(ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk -v port="$port" '{print "http://" $2 port}')
+    echo $hostport
+    echo $hostport | qrencode -t ANSI
+}
+
 alias ts="tmux new -s "
 alias tac="tail -r"
 alias lspath='echo $PATH | tr ":" "\n"'
