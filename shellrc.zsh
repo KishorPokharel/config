@@ -29,7 +29,7 @@ jd() {
 }
 
 notes() {
-    n="$(fd --type file . ~/notes | fzf --layout=reverse --preview 'bat --style=numbers --color=always {}')"
+    n="$(fd --type file . ~/notes | fzf --layout=reverse --bind 'ctrl-y:execute(cat {} | pbcopy)+abort' --preview 'bat --style=numbers --color=always {}')"
     if [[ $n != "" ]]; then
         vi $n
     fi
@@ -58,7 +58,7 @@ fv() {
             vi $f
         fi
     else
-        f="$(cat ~/.all_files | fzf --layout=reverse )"
+        f="$(cat ~/.all_files | fzf --layout=reverse --bind 'ctrl-k:toggle-preview' --bind 'ctrl-y:execute(cat {} | pbcopy)' --preview 'bat --style=numbers --color=always {}')"
         if [[ $f != "" ]]; then
             vi $f
         fi

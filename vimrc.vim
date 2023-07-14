@@ -233,13 +233,21 @@ function s:open_file(path)
     if len(a:path) == 0
         return
     endif
+    "hacky stuff
+    if a:path[0] == "ctrl-y"
+        let copycmd = 'cat ' . escape(a:path[1], ' %#\') . ' | pbcopy'
+        execute('silent !' . copycmd)
+        execute('redraw!')
+        return
+    endif
+    "end hacky stuff
     let cmd = get({'ctrl-x': 'split',
                \ 'ctrl-v': 'vertical split',
                \ 'ctrl-t': 'tabe'}, a:path[0], 'e')
     execute cmd escape(a:path[1], ' %#\')
 endfunction
 
-command! -bang AllFiles call fzf#run(fzf#wrap({'source': 'fd --type file --exclude node_modules --exclude venv . --search-path ~/workspace/', 'sink*': function('<sid>open_file'), 'options': '--expect=ctrl-t,ctrl-v,ctrl-x '.'--preview=bat\ --style=numbers\ --color=always\ {}'}, <bang>0))
+command! -bang AllFiles call fzf#run(fzf#wrap({'source': 'fd --type file --exclude node_modules --exclude venv . --search-path ~/workspace/', 'sink*': function('<sid>open_file'), 'options': '--expect=ctrl-t,ctrl-v,ctrl-x,ctrl-y '.'--preview=bat\ --style=numbers\ --color=always\ {}'}, <bang>0))
 nnoremap <leader><leader>f :AllFiles<CR>
 
 set scrolloff=5
