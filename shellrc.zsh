@@ -113,10 +113,10 @@ nepalidate() {
   echo ""
 }
 
-tss() {
-    SESSION=$(tmux list-sessions -F \#S | fzf --layout=reverse)
-    if [[ -n $SESSION ]]; then
-        tmux switch-client -t $SESSION || tmux attach -t $SESSION
+tsp() {
+    p=$(tmux list-panes -a -F "#S:#I.#P #W" | fzf | cut -f 1 -d ' ')
+    if [[ -n $p ]]; then
+        tmux -u switch-client -t "$p" || tmux -u attach -t "$p"
     fi
 }
 
