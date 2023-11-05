@@ -167,6 +167,11 @@ doc() {
     go doc $@ | bat -l go -n --style plain
 }
 
+# cd into whatever is the forefront Finder window.
+cdf() {  # short for cdfinder
+  cd "`osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)'`"
+}
+
 alias ts="tmux new -s "
 alias tac="tail -r"
 alias lspath='echo $PATH | tr ":" "\n"'
