@@ -137,6 +137,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'godlygeek/tabular'
     Plug 'hrsh7th/vim-vsnip'
     Plug 'dense-analysis/ale'
+    Plug 'quick-lint/quick-lint-js', {'rtp': 'plugin/vim/quick-lint-js.vim', 'tag': '3.0.0'}
     Plug 'itchyny/lightline.vim'
     Plug 'shime/vim-livedown'
 call plug#end()
