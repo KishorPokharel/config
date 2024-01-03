@@ -172,6 +172,10 @@ cdf() {  # short for cdfinder
   cd "`osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)'`"
 }
 
+mov2mp4() {
+    ffmpeg -i "$1" -vcodec h264 -acodec mp2 "$2"
+}
+
 alias ts="tmux new -s "
 alias tac="tail -r"
 alias lspath='echo $PATH | tr ":" "\n"'
