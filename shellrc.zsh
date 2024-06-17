@@ -190,3 +190,8 @@ alias tree="exa --tree"
 alias serve="python3 -m http.server"
 alias cr="cmus-remote"
 alias trim="awk '{\$1=\$1;print}'"
+
+if [[ "$(uname)" == "Linux" ]]; then
+    alias pbcopy='xclip -selection clipboard'
+    alias pbpaste='xclip -selection clipboard -o'
+fi
