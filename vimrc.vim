@@ -135,10 +135,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'mattn/emmet-vim'
     Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production', 'branch': 'release/0.x' }
     Plug 'godlygeek/tabular'
-    Plug 'hrsh7th/vim-vsnip'
     Plug 'dense-analysis/ale'
     Plug 'quick-lint/quick-lint-js', {'rtp': 'plugin/vim/quick-lint-js.vim', 'tag': '3.0.0'}
-    Plug 'itchyny/lightline.vim'
     Plug 'shime/vim-livedown'
 call plug#end()
 
@@ -168,23 +166,6 @@ let g:go_highlight_format_strings = 1
 let g:go_highlight_function_parameters = 1
 let g:go_diagnostics_level = 2
 
-"vsnip settings
-imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
-smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
-imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-nmap        s   <Plug>(vsnip-select-text)
-xmap        s   <Plug>(vsnip-select-text)
-nmap        S   <Plug>(vsnip-cut-text)
-xmap        S   <Plug>(vsnip-cut-text)
-let g:vsnip_filetypes = {}
-let g:vsnip_filetypes.javascriptreact = ['javascript']
-let g:vsnip_filetypes.typescriptreact = ['typescript']
-
 "autocmd Filetype python set cursorcolumn
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd Filetype go ia <buffer> hfsig w http.ResponseWriter, r *http.Request
@@ -195,20 +176,14 @@ augroup PrettierCmd
   au!
   autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html PrettierAsync
 augroup END
-
-" lightline setting
- let g:lightline = {
-       \ 'colorscheme': 'wombat',
-       \ 'active': {
-       \   'right': [],
-       \ },
-       \ 'inactive': {
-       \   'right': [],
-       \ },
-       \ }
+let g:prettier#config#single_quote = 'false' 
 
 let g:ale_linters = {
   \ 'go': ['gopls'],
+  \ 'javascript': ['quick-lint-js'],
+  \ 'javascriptreact': ['quick-lint-js'],
+  \ 'typescript': ['tsserver', 'tslint'],
+  \ 'typescriptreact': ['tsserver', 'tslint'],
   \}
 let g:ale_fixers = {
 \   'go': [
@@ -227,6 +202,7 @@ let g:ale_floating_window_border=['│', '─', '╭', '╮', '╯', '╰', '│
 nnoremap gn :ALENextWrap<CR>
 nnoremap gp :ALEPreviousWrap<CR>
 nnoremap K :ALEHover<CR>
+nnoremap gi :ALEImport<CR>
 nnoremap gd :ALEGoToDefinition<CR>
 
 " search everything
