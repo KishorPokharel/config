@@ -4,6 +4,7 @@ set number
 set mouse=a
 set ignorecase
 set smartcase
+set background=dark
 "set relativenumber
 syntax on
 filetype plugin indent on

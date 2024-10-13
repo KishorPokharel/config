@@ -8,6 +8,8 @@ zle -N edit-command-line
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
 
+source <(fzf --zsh)
+
 mkcd() { mkdir -p "$@" && cd "$@"; }
 
 mktouch() {
@@ -211,7 +213,6 @@ ffhist() {
 }
 
 alias ts="tmux new -s "
-alias tac="tail -r"
 alias lspath='echo $PATH | tr ":" "\n"'
 alias q='exit'
 alias work="cd ~/workspace"
@@ -228,4 +229,7 @@ alias trim="awk '{\$1=\$1;print}'"
 if [[ "$(uname)" == "Linux" ]]; then
     alias pbcopy='xclip -selection clipboard'
     alias pbpaste='xclip -selection clipboard -o'
+fi
+if [[ "$(uname)" == "Darwin" ]]; then
+    alias tac="tail -r"
 fi
