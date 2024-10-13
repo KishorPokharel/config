@@ -176,6 +176,40 @@ mov2mp4() {
     ffmpeg -i "$1" -vcodec h264 -acodec mp2 "$2"
 }
 
+fgs() {
+    git branch | fzf --preview 'git show --color=always {-1}' \
+                 --bind 'enter:become(git checkout {-1})' \
+                 --height 40% --layout reverse
+}
+
+ffhist() {
+  local PROFILE_DIR=$(find ~/.mozilla/firefox -maxdepth 1 -type d -name "*.default-release" | head -n 1)
+
+  local HISTORY_DB="$PROFILE_DIR/places.sqlite"
+
+  if [[ ! -f "$HISTORY_DB" ]]; then
+    echo "Firefox history database not found!"
+    return 1
+  fi
+
+  local TEMP_DB="/tmp/places.sqlite.$(date +%s)"
+  cp "$HISTORY_DB" "$TEMP_DB"
+
+  local SQL_QUERY="SELECT url, title FROM moz_places ORDER BY last_visit_date DESC;"
+
+  local SELECTION=$(sqlite3 "$TEMP_DB" "$SQL_QUERY" | fzf --border --border-label "Firefox::History")
+
+  rm "$TEMP_DB"
+
+  local URL=$(echo "$SELECTION" | cut -d '|' -f 1)
+
+  if [[ -n "$URL" ]]; then
+    xdg-open "$URL"
+  else
+    echo "No URL selected!"
+  fi
+}
+
 alias ts="tmux new -s "
 alias tac="tail -r"
 alias lspath='echo $PATH | tr ":" "\n"'
