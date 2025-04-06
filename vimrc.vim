@@ -185,6 +185,8 @@ let g:ale_linters = {
   \ 'javascriptreact': ['quick-lint-js'],
   \ 'typescript': ['tsserver', 'tslint'],
   \ 'typescriptreact': ['tsserver', 'tslint'],
+  \ 'c': ['clangd'],
+  \ 'cpp': ['clangd'],
   \}
 let g:ale_fixers = {
 \   'go': [
@@ -193,12 +195,17 @@ let g:ale_fixers = {
 \   ],
 \   'elm': [
 \       'elm-format',
-\   ]
+\   ],
+\   'c': ['clang-format'],
+\   'cpp': ['clang-format'],
 \}
 let g:ale_fix_on_save = 1
 let g:ale_set_quickfix=1
 let g:ale_floating_preview=1
 let g:ale_floating_window_border=['│', '─', '╭', '╮', '╯', '╰', '│', '─']
+
+let g:ale_c_clangformat_options = '--style=LLVM'
+let g:ale_cpp_clangformat_options = '--style=LLVM'
 
 nnoremap gn :ALENextWrap<CR>
 nnoremap gp :ALEPreviousWrap<CR>
