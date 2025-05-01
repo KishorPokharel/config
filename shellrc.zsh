@@ -123,14 +123,15 @@ tsp() {
 }
 
 gistm() {
-    local code="$(gh gist list | \
+    local code="$(gh gist list -L 1000 | \
         fzf \
         --preview-window=hidden \
         --bind="ctrl-\:toggle-preview" \
-        --bind="ctrl-y:execute-silent(gh gist view {1} | pbcopy)" \
+        --bind="ctrl-y:execute-silent(gh gist view {1} | xclip -selection clipboard)" \
+        --bind="ctrl-o:execute-silent(open 'https://gist.github.com/KishorPokharel/{1}')" \
         --preview 'gh gist view {1}' \
         --header-first \
-        --header="C-\ to toggle preview :: ENTER to edit gist :: C-y to copy gist to clipboard" | \
+        --header="C-\ to toggle preview :: ENTER to edit gist :: C-y to copy gist to clipboard :: C-o to open in browser" | \
     awk '{print $1}')"
     if [[ -n "$code" ]]; then
         gh gist edit "$code"
