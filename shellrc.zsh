@@ -200,7 +200,7 @@ ffhist() {
 
   local SQL_QUERY="SELECT url, title FROM moz_places ORDER BY last_visit_date DESC;"
 
-  local SELECTION=$(sqlite3 "$TEMP_DB" "$SQL_QUERY" | fzf --border --border-label "Firefox::History")
+  local SELECTION=$(sqlite3 -cmd ".mode list" -cmd ".headers off" "$TEMP_DB" "$SQL_QUERY" | fzf --border --border-label "Firefox::History")
 
   rm "$TEMP_DB"
 
