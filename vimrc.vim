@@ -128,23 +128,52 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-surround'
-    Plug 'scrooloose/nerdtree'
-    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+    Plug 'lambdalisue/fern.vim'
+    " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
     Plug 'markonm/traces.vim'
     Plug 'mattn/emmet-vim'
-    Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production', 'branch': 'release/0.x' }
+    Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
     Plug 'godlygeek/tabular'
     Plug 'dense-analysis/ale'
     Plug 'quick-lint/quick-lint-js', {'rtp': 'plugin/vim/quick-lint-js.vim', 'tag': '3.0.0'}
     Plug 'shime/vim-livedown'
 call plug#end()
 
-"nerdtree settings
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__', 'node_modules']
-"let g:NERDTreeMinimalMenu = 1
+" Fern Settings
+let g:fern#disable_default_mappings   = 1
+let g:fern#disable_drawer_auto_quit   = 1
+let g:fern#disable_viewer_hide_cursor = 1
+
+function! FernInit() abort
+  nmap <buffer><expr>
+        \ <Plug>(fern-my-open-expand-collapse)
+        \ fern#smart#leaf(
+        \   "\<Plug>(fern-action-open:select)",
+        \   "\<Plug>(fern-action-expand)",
+        \   "\<Plug>(fern-action-collapse)",
+        \ )
+  nmap <buffer> <CR> <Plug>(fern-my-open-expand-collapse)
+  nmap <buffer> <2-LeftMouse> <Plug>(fern-my-open-expand-collapse)
+  nmap <buffer> m <Plug>(fern-action-mark:toggle)j
+  nmap <buffer> N <Plug>(fern-action-new-file)
+  nmap <buffer> K <Plug>(fern-action-new-dir)
+  nmap <buffer> D <Plug>(fern-action-remove)
+  nmap <buffer> C <Plug>(fern-action-move)
+  nmap <buffer> R <Plug>(fern-action-rename)
+  nmap <buffer> s <Plug>(fern-action-open:split)
+  nmap <buffer> v <Plug>(fern-action-open:vsplit)
+  nmap <buffer> r <Plug>(fern-action-reload)
+  nmap <buffer> <nowait> d <Plug>(fern-action-hidden:toggle)
+  nmap <buffer> <nowait> < <Plug>(fern-action-leave)
+  nmap <buffer> <nowait> > <Plug>(fern-action-enter)
+endfunction
+
+augroup FernEvents
+  autocmd!
+  autocmd FileType fern call FernInit()
+augroup END
 
 "fzf.vim remap
 nnoremap <C-p>     :Files<cr>
@@ -166,6 +195,7 @@ let g:go_highlight_function_calls = 1
 let g:go_highlight_format_strings = 1
 let g:go_highlight_function_parameters = 1
 let g:go_diagnostics_level = 2
+let g:go_gopls_gofumpt=1
 
 "autocmd Filetype python set cursorcolumn
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
@@ -173,11 +203,13 @@ autocmd Filetype go ia <buffer> hfsig w http.ResponseWriter, r *http.Request
 autocmd Filetype javascript,html,css set sw=2 sts=2
 autocmd Filetype c,cpp nnoremap <leader>p ggVG:!clang-format % --style=google<CR>:w<CR>
 
-augroup PrettierCmd
-  au!
-  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html PrettierAsync
-augroup END
+" augroup PrettierCmd
+"   au!
+"   autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html PrettierAsync
+" augroup END
 let g:prettier#config#single_quote = 'false' 
+let g:prettier#config#use_tabs = 'false'
+let g:prettier#config#tab_width = '2'
 
 let g:ale_linters = {
   \ 'go': ['gopls'],
@@ -199,13 +231,15 @@ let g:ale_fixers = {
 \   'c': ['clang-format'],
 \   'cpp': ['clang-format'],
 \}
+
+"\   'sql': ['sqlfluff'],
 let g:ale_fix_on_save = 1
 let g:ale_set_quickfix=1
 let g:ale_floating_preview=1
 let g:ale_floating_window_border=['│', '─', '╭', '╮', '╯', '╰', '│', '─']
 
-let g:ale_c_clangformat_options = '--style=LLVM'
-let g:ale_cpp_clangformat_options = '--style=LLVM'
+let g:ale_c_clangformat_options = '--style=google'
+let g:ale_cpp_clangformat_options = '--style=google'
 
 nnoremap gn :ALENextWrap<CR>
 nnoremap gp :ALEPreviousWrap<CR>
