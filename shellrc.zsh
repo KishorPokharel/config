@@ -213,6 +213,17 @@ ffhist() {
   fi
 }
 
+pastepng() {
+    local filename="$1"
+
+    if [ -z "$filename" ]; then
+        filename="clipboard_$(date +%Y-%m-%d_%H-%M-%S).png"
+    fi
+
+    xclip -selection clipboard -t image/png -o > "$filename" && \
+    echo "Saved to $filename"
+}
+
 alias ts="tmux new -s "
 alias lspath='echo $PATH | tr ":" "\n"'
 alias q='exit'
