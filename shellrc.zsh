@@ -245,3 +245,8 @@ fi
 if [[ "$(uname)" == "Darwin" ]]; then
     alias tac="tail -r"
 fi
+
+randmkcd() {
+    local dir="$(date +"%Y-%m-%d-%s")"
+    mkdir "$dir" && cd $dir;
+}
