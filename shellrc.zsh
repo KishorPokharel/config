@@ -1,6 +1,10 @@
 export PROMPT='%B%{$fg[cyan]%}%c%{$reset_color%}%b $(git_prompt_info)$ '
 export EXA_COLORS='di=36;;01:*.mp3=37;;01:*.pdf=33'
 export FZF_DEFAULT_OPTS="--layout=reverse"
+export FZF_CTRL_R_OPTS="
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | xclip -selection clipboard)+abort'
+  --header 'Press CTRL-Y to copy command to clipboard'
+"
 
 # edit long commands in $EDITOR
 autoload -U edit-command-line
