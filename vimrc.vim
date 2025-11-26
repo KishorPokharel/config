@@ -1,4 +1,5 @@
 set enc=utf-8
+set regexpengine=0
 set nocompatible
 set number
 set mouse=a
