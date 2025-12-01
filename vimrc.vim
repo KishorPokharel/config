@@ -55,8 +55,8 @@ highlight Comment guifg=DarkGrey
 vnoremap tc :s/\<\(\w\)\(\w*\)\>/\u\1\L\2/g<CR>
 
 "misc
-nnoremap <C-n> :NERDTreeToggle<CR>
-nnoremap <leader>n :NERDTree %:h<CR>
+nnoremap <C-n> :Fern . -drawer -toggle<CR>
+nnoremap <leader>n :Fern %:h<CR>
 nnoremap <leader>t :term<CR>
 nnoremap <silent> <leader>vt :vert term<CR>
 nnoremap <leader>dt :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
