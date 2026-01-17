@@ -1,5 +1,5 @@
 export PROMPT='%B%{$fg[cyan]%}%c%{$reset_color%}%b $(git_prompt_info)$ '
-export EXA_COLORS='di=36;;01:*.mp3=37;;01:*.pdf=33'
+# export EXA_COLORS='di=36;;01:*.mp3=37;;01:*.pdf=33'
 export FZF_DEFAULT_OPTS="--layout=reverse"
 export FZF_CTRL_R_OPTS="
   --bind 'ctrl-y:execute-silent(echo -n {2..} | (command -v pbcopy >/dev/null && pbcopy || xclip -selection clipboard))+abort'
@@ -12,7 +12,9 @@ zle -N edit-command-line
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
 
-source <(fzf --zsh)
+if command -v fzf >/dev/null 2>&1; then
+    source <(fzf --zsh)
+fi
 
 mkcd() { mkdir -p "$@" && cd "$@"; }
 
@@ -236,8 +238,8 @@ alias vimrc="vi ~/.vimrc"
 alias zshrc="vi ~/.zshrc"
 alias sz="source ~/.zshrc"
 alias cat="bat -p"
-alias ls="exa"
-alias tree="exa --tree"
+# alias ls="exa"
+# alias tree="exa --tree"
 alias serve="python3 -m http.server"
 alias cr="cmus-remote"
 alias trim="awk '{\$1=\$1;print}'"
@@ -254,3 +256,7 @@ randmkcd() {
     local dir="$(date +"%Y-%m-%d-%s")"
     mkdir "$dir" && cd $dir;
 }
+
+if command -v task >/dev/null 2>&1; then
+  source <(task --completion zsh)
+fi
